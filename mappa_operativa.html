@@ -20,7 +20,7 @@ body { font-family:'Segoe UI',Arial,sans-serif; background:#0d1b2a; color:#e0e8f
 .h-kpi-label { font-size:10px; color:#6b8cae; margin-top:2px; text-transform:uppercase; letter-spacing:.05em; }
 #body { display:flex; flex:1; overflow:hidden; }
 #sidebar { width:300px; flex-shrink:0; background:#111e2e; border-right:1px solid #1e3a5f; display:flex; flex-direction:column; overflow:hidden; }
-#filters { padding:14px 14px 10px; border-bottom:1px solid #1e3a5f; overflow-y:auto; max-height:55vh; }
+#filters { padding:14px 14px 10px; border-bottom:1px solid #1e3a5f; overflow-y:auto; max-height:58vh; }
 .filter-label { font-size:10px; color:#6b8cae; text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px; }
 .filter-group { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
 .fbtn { font-size:11px; padding:4px 9px; border-radius:12px; border:1px solid #2a4a6e; background:transparent; color:#8aaec8; cursor:pointer; transition:all .15s; user-select:none; }
@@ -75,12 +75,12 @@ body { font-family:'Segoe UI',Arial,sans-serif; background:#0d1b2a; color:#e0e8f
   <div id="header-left">
     <div id="logo-mark">TS</div>
     <div>
-      <div id="header-title">TecnoService Industriale Srl &mdash; Mappa Operativa</div>
-      <div id="header-sub">Gestione interventi &middot; Emilia-Romagna</div>
+      <div id="header-title">TecnoService Industriale Srl &#8212; Mappa Operativa</div>
+      <div id="header-sub">Gestione interventi &#183; Emilia-Romagna</div>
     </div>
   </div>
   <div id="header-right">
-    <div class="h-kpi"><div class="h-kpi-val" id="kpi-aperte" style="color:#e05c2a;">--</div><div class="h-kpi-label">Attivit&agrave; aperte</div></div>
+    <div class="h-kpi"><div class="h-kpi-val" id="kpi-aperte" style="color:#e05c2a;">--</div><div class="h-kpi-label">Attivit&#224; aperte</div></div>
     <div class="h-kpi"><div class="h-kpi-val" id="kpi-dafare" style="color:#f0a020;">--</div><div class="h-kpi-label">Da pianificare</div></div>
     <div class="h-kpi"><div class="h-kpi-val" id="kpi-pianificate" style="color:#2ca1fe;">--</div><div class="h-kpi-label">Pianificate</div></div>
     <div class="h-kpi"><div class="h-kpi-val" id="kpi-totale" style="color:#60b880;">--</div><div class="h-kpi-label">Totale 2023</div></div>
@@ -116,7 +116,7 @@ body { font-family:'Segoe UI',Arial,sans-serif; background:#0d1b2a; color:#e0e8f
         <button class="fbtn" data-group="tecnico" data-val="Roberto A.">Roberto</button>
         <button class="fbtn" data-group="tecnico" data-val="Davide T.">Davide</button>
       </div>
-      <div class="filter-label">Priorit&agrave; <span style="color:#3a6a9e;font-size:9px;">(selezione multipla)</span></div>
+      <div class="filter-label">Priorit&#224; <span style="color:#3a6a9e;font-size:9px;">(selezione multipla)</span></div>
       <div class="filter-group">
         <button class="fbtn tutti-btn active" data-group="priorita" data-val="ALL">Tutti</button>
         <button class="fbtn fbtn-alta" data-group="priorita" data-val="Alta">Alta</button>
@@ -124,22 +124,22 @@ body { font-family:'Segoe UI',Arial,sans-serif; background:#0d1b2a; color:#e0e8f
         <button class="fbtn fbtn-bassa" data-group="priorita" data-val="Bassa">Bassa</button>
         <button class="fbtn" data-group="priorita" data-val="">Non assegnata</button>
       </div>
-      <div class="work-note">&#9888; Dati dimostrativi &mdash; aziende e attivit&agrave; fittizie generate per il portfolio</div>
+      <div class="work-note">&#9888; Dati dimostrativi &#8212; aziende e attivit&#224; fittizie generate per il portfolio</div>
     </div>
-    <div id="list-header"><span>Attivit&agrave;</span><span id="list-count">--</span></div>
+    <div id="list-header"><span>Attivit&#224;</span><span id="list-count">--</span></div>
     <div id="attivita-list"></div>
   </div>
   <div id="map-wrap">
     <div id="map"></div>
     <div id="legend">
-      <div class="leg-title">Stato attivit&agrave;</div>
+      <div class="leg-title">Stato attivit&#224;</div>
       <div class="leg-row"><div class="leg-dot" style="background:#e05c2a;"></div>Da fare</div>
       <div class="leg-row"><div class="leg-dot" style="background:#2ca1fe;"></div>Pianificata</div>
       <div class="leg-row"><div class="leg-dot" style="background:#f0a020;"></div>Stand by</div>
       <div class="leg-row"><div class="leg-dot" style="background:#c040c0;"></div>Da ripian.</div>
       <div class="leg-row"><div class="leg-dot" style="background:#4a6a4a;"></div>Chiusa</div>
       <div class="leg-sep"></div>
-      <div class="leg-title">Priorit&agrave; (bordo)</div>
+      <div class="leg-title">Priorit&#224; (bordo)</div>
       <div class="leg-row"><div class="leg-dot" style="background:transparent;border:2.5px solid #e05c2a;"></div>Alta</div>
       <div class="leg-row"><div class="leg-dot" style="background:transparent;border:2.5px solid #f0a020;"></div>Media</div>
       <div class="leg-row"><div class="leg-dot" style="background:transparent;border:2.5px solid #4a9a6a;"></div>Bassa</div>
@@ -152,145 +152,103 @@ var STATO_COLOR = {'DA FARE':'#e05c2a','PIANIFICATA':'#2ca1fe','STAND BY':'#f0a0
 var STATO_LABEL = {'DA FARE':'Da fare','PIANIFICATA':'Pianificata','STAND BY':'Stand by','DA RIPIANIFICARE':'Da ripianificare','ATTIVITA_FATTA':'Chiusa'};
 var PR_COLOR = {'Alta':'#e05c2a','Media':'#f0a020','Bassa':'#4a9a6a'};
 var LS_KEY = 'ts_priorita_2023';
-
-function loadPriorita() { try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch(e) { return {}; } }
-function savePriorita(p) { try { localStorage.setItem(LS_KEY, JSON.stringify(p)); } catch(e) {} }
-var prioritaMap = loadPriorita();
-
-var activeFilters = { stato: new Set(), tipo: new Set(), tecnico: new Set(), priorita: new Set() };
-var markerMap = {};
-
-var map = L.map('map').setView([44.58, 11.30], 9);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors', maxZoom: 18
-}).addTo(map);
-
-function mkIcon(stato, open, pr) {
-  var col = STATO_COLOR[stato] || '#888';
-  var r = open ? 9 : 6;
-  var s = r * 2;
-  var brd = pr && PR_COLOR[pr] ? '3px solid ' + PR_COLOR[pr] : '2px solid rgba(255,255,255,0.85)';
-  var shd = pr && PR_COLOR[pr] ? '0 0 0 1px ' + PR_COLOR[pr] + ',0 1px 5px rgba(0,0,0,0.35)' : '0 1px 5px rgba(0,0,0,0.35)';
-  return L.divIcon({
-    className: '',
-    html: '<div style="width:' + s + 'px;height:' + s + 'px;border-radius:50%;background:' + col + ';border:' + brd + ';box-shadow:' + shd + ';"></div>',
-    iconSize: [s, s], iconAnchor: [r, r]
-  });
+function loadPriorita(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{};}catch(e){return{};}}
+function savePriorita(p){try{localStorage.setItem(LS_KEY,JSON.stringify(p));}catch(e){}}
+var prioritaMap=loadPriorita();
+var activeFilters={stato:new Set(),tipo:new Set(),tecnico:new Set(),priorita:new Set()};
+var markerMap={};
+var map=L.map('map').setView([44.58,11.30],9);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:18}).addTo(map);
+function mkIcon(stato,open,pr){
+  var col=STATO_COLOR[stato]||'#888';
+  var r=open?9:6;var s=r*2;
+  var brd=pr&&PR_COLOR[pr]?'3px solid '+PR_COLOR[pr]:'2px solid rgba(255,255,255,0.85)';
+  var shd=pr&&PR_COLOR[pr]?'0 0 0 1px '+PR_COLOR[pr]+',0 1px 5px rgba(0,0,0,0.35)':'0 1px 5px rgba(0,0,0,0.35)';
+  return L.divIcon({className:'',html:'<div style="width:'+s+'px;height:'+s+'px;border-radius:50%;background:'+col+';border:'+brd+';box-shadow:'+shd+';"></div>',iconSize:[s,s],iconAnchor:[r,r]});
 }
-
-function buildPopup(d) {
-  var col = STATO_COLOR[d.stato] || '#888';
-  var pr = prioritaMap[d.attivita] || '';
-  var opts = ['','Alta','Media','Bassa'].map(function(v) {
-    return '<option value="' + v + '"' + (pr === v ? ' selected' : '') + '>' + (v || 'Non assegnata') + '</option>';
-  }).join('');
-  return '<div class="ts-popup">'
-    + '<div class="ts-popup-title">' + d.cliente + '</div>'
-    + '<span class="ts-popup-badge" style="background:' + col + '22;color:' + col + ';">' + (STATO_LABEL[d.stato] || d.stato) + '</span>'
-    + '<div class="ts-popup-row"><span>Tipo</span><span>' + d.tipo + '</span></div>'
-    + '<div class="ts-popup-row"><span>Citt&agrave; / Zona</span><span>' + d.citta + ' &middot; Z' + d.zona + '</span></div>'
-    + '<div class="ts-popup-row"><span>Tecnico</span><span>' + (d.tecnico || '&mdash;') + '</span></div>'
-    + '<div class="ts-popup-row"><span>Scadenza</span><span>' + d.data_scad + '</span></div>'
-    + '<div class="ts-popup-row"><span>Pianificato</span><span>' + (d.data_pian || '&mdash;') + '</span></div>'
-    + (d.note ? '<div class="ts-popup-note">' + d.note + '</div>' : '')
-    + '<div class="ts-popup-prio"><label>Priorit&agrave;:</label>'
-    + '<select onchange="setPriorita('' + d.attivita + '',this.value)">' + opts + '</select>'
-    + '</div></div>';
+function buildPopup(d){
+  var col=STATO_COLOR[d.stato]||'#888';
+  var pr=prioritaMap[d.attivita]||'';
+  var opts=['','Alta','Media','Bassa'].map(function(v){return '<option value="'+v+'"'+(pr===v?' selected':'')+'>'+(v||'Non assegnata')+'</option>';}).join('');
+  return '<div class="ts-popup"><div class="ts-popup-title">'+d.cliente+'</div>'
+    +'<span class="ts-popup-badge" style="background:'+col+'22;color:'+col+';">'+(STATO_LABEL[d.stato]||d.stato)+'</span>'
+    +'<div class="ts-popup-row"><span>Tipo</span><span>'+d.tipo+'</span></div>'
+    +'<div class="ts-popup-row"><span>Citt&#224; / Zona</span><span>'+d.citta+' &#183; Z'+d.zona+'</span></div>'
+    +'<div class="ts-popup-row"><span>Tecnico</span><span>'+(d.tecnico||'&#8212;')+'</span></div>'
+    +'<div class="ts-popup-row"><span>Scadenza</span><span>'+d.data_scad+'</span></div>'
+    +'<div class="ts-popup-row"><span>Pianificato</span><span>'+(d.data_pian||'&#8212;')+'</span></div>'
+    +(d.note?'<div class="ts-popup-note">'+d.note+'</div>':'')
+    +'<div class="ts-popup-prio"><label>Priorit&#224;:</label><select onchange="setPriorita(''+d.attivita+'',this.value)">'+opts+'</select></div>'
+    +'</div>';
 }
-
-function setPriorita(attivita, val) {
-  if (val) { prioritaMap[attivita] = val; } else { delete prioritaMap[attivita]; }
+function setPriorita(attivita,val){
+  if(val){prioritaMap[attivita]=val;}else{delete prioritaMap[attivita];}
   savePriorita(prioritaMap);
-  var d = DB.find(function(x) { return x.attivita === attivita; });
-  if (!d) return;
-  var open = d.stato !== 'ATTIVITA_FATTA';
-  var m = markerMap[attivita];
-  if (m) { m.setIcon(mkIcon(d.stato, open, val)); m.setPopupContent(buildPopup(d)); }
-  var dot = document.querySelector('.pr-dot[data-att="' + attivita + '"]');
-  if (dot) {
-    dot.style.background = val ? PR_COLOR[val] : 'transparent';
-    dot.style.border = '2px solid ' + (val ? PR_COLOR[val] : '#555');
-  }
+  var d=DB.find(function(x){return x.attivita===attivita;});
+  if(!d)return;
+  var open=d.stato!=='ATTIVITA_FATTA';
+  var m=markerMap[attivita];
+  if(m){m.setIcon(mkIcon(d.stato,open,val));m.setPopupContent(buildPopup(d));}
+  var dot=document.querySelector('.pr-dot[data-att="'+attivita+'"]');
+  if(dot){dot.style.background=val?PR_COLOR[val]:'transparent';dot.style.border='2px solid '+(val?PR_COLOR[val]:'#555');}
 }
-
-function getPr(d) { return prioritaMap[d.attivita] || ''; }
-
-function filtered() {
-  return DB.filter(function(d) {
-    if (activeFilters.stato.size > 0 && !activeFilters.stato.has(d.stato)) return false;
-    if (activeFilters.tipo.size > 0 && !activeFilters.tipo.has(d.tipo)) return false;
-    if (activeFilters.tecnico.size > 0 && !activeFilters.tecnico.has(d.tecnico)) return false;
-    if (activeFilters.priorita.size > 0 && !activeFilters.priorita.has(getPr(d))) return false;
+function getPr(d){return prioritaMap[d.attivita]||'';}
+function filtered(){
+  return DB.filter(function(d){
+    if(activeFilters.stato.size>0&&!activeFilters.stato.has(d.stato))return false;
+    if(activeFilters.tipo.size>0&&!activeFilters.tipo.has(d.tipo))return false;
+    if(activeFilters.tecnico.size>0&&!activeFilters.tecnico.has(d.tecnico))return false;
+    if(activeFilters.priorita.size>0&&!activeFilters.priorita.has(getPr(d)))return false;
     return true;
   });
 }
-
-function render() {
-  Object.keys(markerMap).forEach(function(k) { map.removeLayer(markerMap[k]); });
-  markerMap = {};
-  document.getElementById('attivita-list').innerHTML = '';
-  var data = filtered();
-  document.getElementById('list-count').textContent = data.length + ' risultati';
-  data.forEach(function(d) {
-    var open = d.stato !== 'ATTIVITA_FATTA';
-    var pr = getPr(d);
-    var m = L.marker([d.lat, d.lng], { icon: mkIcon(d.stato, open, pr) });
-    m.bindPopup(buildPopup(d), { maxWidth: 280 });
+function render(){
+  Object.keys(markerMap).forEach(function(k){map.removeLayer(markerMap[k]);});
+  markerMap={};
+  document.getElementById('attivita-list').innerHTML='';
+  var data=filtered();
+  document.getElementById('list-count').textContent=data.length+' risultati';
+  data.forEach(function(d){
+    var open=d.stato!=='ATTIVITA_FATTA';
+    var pr=getPr(d);
+    var m=L.marker([d.lat,d.lng],{icon:mkIcon(d.stato,open,pr)});
+    m.bindPopup(buildPopup(d),{maxWidth:280});
     m.addTo(map);
-    markerMap[d.attivita] = m;
-    var col = STATO_COLOR[d.stato] || '#888';
-    var prCol = pr ? PR_COLOR[pr] : 'transparent';
-    var prBrd = pr ? PR_COLOR[pr] : '#555';
-    var el = document.createElement('div');
-    el.className = 'list-item';
-    el.innerHTML = '<div class="li-top"><div class="li-cliente">' + d.cliente + '</div><div class="li-tipo">' + d.tipo + '</div></div>'
-      + '<div class="li-bottom">'
-      + '<div class="stato-dot" style="background:' + col + ';"></div>'
-      + '<div class="li-citta">' + d.citta + '</div>'
-      + (d.tecnico ? '<div class="li-tecnico">&middot; ' + d.tecnico + '</div>' : '')
-      + '<div class="pr-dot" data-att="' + d.attivita + '" style="background:' + prCol + ';border:2px solid ' + prBrd + ';"></div>'
-      + '</div>';
-    (function(dd) {
-      el.addEventListener('click', function() {
-        document.querySelectorAll('.list-item').forEach(function(x) { x.classList.remove('selected'); });
-        el.classList.add('selected');
-        map.setView([dd.lat, dd.lng], 13);
-        if (markerMap[dd.attivita]) markerMap[dd.attivita].openPopup();
-      });
-    })(d);
+    markerMap[d.attivita]=m;
+    var col=STATO_COLOR[d.stato]||'#888';
+    var prCol=pr?PR_COLOR[pr]:'transparent';
+    var prBrd=pr?PR_COLOR[pr]:'#555';
+    var el=document.createElement('div');
+    el.className='list-item';
+    el.innerHTML='<div class="li-top"><div class="li-cliente">'+d.cliente+'</div><div class="li-tipo">'+d.tipo+'</div></div>'
+      +'<div class="li-bottom"><div class="stato-dot" style="background:'+col+';"></div>'
+      +'<div class="li-citta">'+d.citta+'</div>'
+      +(d.tecnico?'<div class="li-tecnico">&#183; '+d.tecnico+'</div>':'')
+      +'<div class="pr-dot" data-att="'+d.attivita+'" style="background:'+prCol+';border:2px solid '+prBrd+';"></div>'
+      +'</div>';
+    (function(dd){el.addEventListener('click',function(){
+      document.querySelectorAll('.list-item').forEach(function(x){x.classList.remove('selected');});
+      el.classList.add('selected');
+      map.setView([dd.lat,dd.lng],13);
+      if(markerMap[dd.attivita])markerMap[dd.attivita].openPopup();
+    });})(d);
     document.getElementById('attivita-list').appendChild(el);
   });
-  document.getElementById('kpi-aperte').textContent = DB.filter(function(d) { return d.stato !== 'ATTIVITA_FATTA'; }).length;
-  document.getElementById('kpi-dafare').textContent = DB.filter(function(d) { return d.stato === 'DA FARE'; }).length;
-  document.getElementById('kpi-pianificate').textContent = DB.filter(function(d) { return d.stato === 'PIANIFICATA'; }).length;
-  document.getElementById('kpi-totale').textContent = DB.length;
+  document.getElementById('kpi-aperte').textContent=DB.filter(function(d){return d.stato!=='ATTIVITA_FATTA';}).length;
+  document.getElementById('kpi-dafare').textContent=DB.filter(function(d){return d.stato==='DA FARE';}).length;
+  document.getElementById('kpi-pianificate').textContent=DB.filter(function(d){return d.stato==='PIANIFICATA';}).length;
+  document.getElementById('kpi-totale').textContent=DB.length;
 }
-
-document.querySelectorAll('.fbtn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var grp = this.dataset.group;
-    var val = this.dataset.val;
-    var set = activeFilters[grp];
-    var tuttiBtn = document.querySelector('.fbtn.tutti-btn[data-group="' + grp + '"]');
-    if (val === 'ALL') {
-      set.clear();
-      document.querySelectorAll('.fbtn[data-group="' + grp + '"]').forEach(function(b) { b.classList.remove('active'); });
-      tuttiBtn.classList.add('active');
-    } else {
-      tuttiBtn.classList.remove('active');
-      if (set.has(val)) {
-        set.delete(val);
-        this.classList.remove('active');
-        if (set.size === 0) tuttiBtn.classList.add('active');
-      } else {
-        set.add(val);
-        this.classList.add('active');
-      }
-    }
+document.querySelectorAll('.fbtn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var grp=this.dataset.group;var val=this.dataset.val;
+    var set=activeFilters[grp];
+    var tuttiBtn=document.querySelector('.fbtn.tutti-btn[data-group="'+grp+'"]');
+    if(val==='ALL'){set.clear();document.querySelectorAll('.fbtn[data-group="'+grp+'"]').forEach(function(b){b.classList.remove('active');});tuttiBtn.classList.add('active');}
+    else{tuttiBtn.classList.remove('active');if(set.has(val)){set.delete(val);this.classList.remove('active');if(set.size===0)tuttiBtn.classList.add('active');}else{set.add(val);this.classList.add('active');}}
     render();
   });
 });
-
 render();
 </script>
 </body>
