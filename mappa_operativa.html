@@ -94,6 +94,23 @@ body { font-family:'Segoe UI',Arial,sans-serif; background:#0d1b2a; color:#e0e8f
 /* ============================================================
    MOBILE — elementi nascosti/visibili
 ============================================================ */
+
+/* Forza layout mobile via JS class */
+body.mobile #header-right { display:none !important; }
+body.mobile #mob-header-kpi { display:flex !important; }
+body.mobile #sidebar { display:none !important; }
+body.mobile #mob-fab { display:flex !important; }
+body.mobile #mob-drawer { display:flex !important; }
+body.mobile #legend { bottom:80px; right:10px; padding:8px 10px; font-size:10px; }
+body.mobile .leg-title { font-size:9px; }
+body.mobile #header { padding:10px 14px; }
+body.mobile #header-title { font-size:13px; }
+body.mobile #header-sub { display:none; }
+body.mobile .mob-kpi { text-align:right; padding-left:14px; border-left:1px solid #1e3a5f; }
+body.mobile .mob-kpi:first-child { border-left:none; }
+body.mobile .mob-kpi-val { font-size:16px; font-weight:600; line-height:1; }
+body.mobile .mob-kpi-label { font-size:9px; color:#6b8cae; text-transform:uppercase; letter-spacing:.04em; margin-top:1px; }
+
 #mob-fab { display:none; }
 #mob-drawer { display:none; }
 #mob-header-kpi { display:none; }
@@ -101,7 +118,7 @@ body { font-family:'Segoe UI',Arial,sans-serif; background:#0d1b2a; color:#e0e8f
 /* ============================================================
    RESPONSIVE — sotto 768px
 ============================================================ */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
 
   /* Header compatto */
   #header { padding:10px 14px; }
@@ -567,8 +584,21 @@ document.addEventListener('click', function(e){
   render();
 });
 
-// Resize: invalida la mappa quando la finestra cambia dimensione
-window.addEventListener('resize', function(){ map.invalidateSize(); });
+
+// Rileva mobile via touch o larghezza logica
+function detectMobile(){
+  return ('ontouchstart' in window || navigator.maxTouchPoints > 0) && window.innerWidth < 1024;
+}
+if(detectMobile()){
+  document.body.classList.add('mobile');
+}
+window.addEventListener('resize', function(){
+  if(detectMobile()){ document.body.classList.add('mobile'); }
+  else { document.body.classList.remove('mobile'); }
+  map.invalidateSize();
+});
+
+
 
 render();
 </script>
