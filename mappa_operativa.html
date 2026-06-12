@@ -154,23 +154,38 @@ var PR_COLOR = {'Alta':'#e05c2a','Media':'#f0a020','Bassa':'#4a9a6a'};
 var LS_KEY = 'ts_priorita_2023';
 function loadPriorita(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{};}catch(e){return{};}}
 function savePriorita(p){try{localStorage.setItem(LS_KEY,JSON.stringify(p));}catch(e){}}
-var prioritaMap=loadPriorita();
-var activeFilters={stato:new Set(),tipo:new Set(),tecnico:new Set(),priorita:new Set()};
-var markerMap={};
-var map=L.map('map').setView([44.58,11.30],9);
+var prioritaMap = loadPriorita();
+var activeFilters = {stato:new Set(),tipo:new Set(),tecnico:new Set(),priorita:new Set()};
+var markerMap = {};
+
+var map = L.map('map').setView([44.58,11.30],9);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:18}).addTo(map);
+
+// Gestione cambio priorita tramite event delegation sul documento
+document.addEventListener('change', function(e) {
+  if (e.target && e.target.classList.contains('prio-select')) {
+    var attivita = e.target.getAttribute('data-att');
+    var val = e.target.value;
+    setPriorita(attivita, val);
+  }
+});
+
 function mkIcon(stato,open,pr){
   var col=STATO_COLOR[stato]||'#888';
-  var r=open?9:6;var s=r*2;
+  var r=open?9:6; var s=r*2;
   var brd=pr&&PR_COLOR[pr]?'3px solid '+PR_COLOR[pr]:'2px solid rgba(255,255,255,0.85)';
   var shd=pr&&PR_COLOR[pr]?'0 0 0 1px '+PR_COLOR[pr]+',0 1px 5px rgba(0,0,0,0.35)':'0 1px 5px rgba(0,0,0,0.35)';
   return L.divIcon({className:'',html:'<div style="width:'+s+'px;height:'+s+'px;border-radius:50%;background:'+col+';border:'+brd+';box-shadow:'+shd+';"></div>',iconSize:[s,s],iconAnchor:[r,r]});
 }
+
 function buildPopup(d){
   var col=STATO_COLOR[d.stato]||'#888';
   var pr=prioritaMap[d.attivita]||'';
-  var opts=['','Alta','Media','Bassa'].map(function(v){return '<option value="'+v+'"'+(pr===v?' selected':'')+'>'+(v||'Non assegnata')+'</option>';}).join('');
-  return '<div class="ts-popup"><div class="ts-popup-title">'+d.cliente+'</div>'
+  var opts=['','Alta','Media','Bassa'].map(function(v){
+    return '<option value="'+v+'"'+(pr===v?' selected':'')+'>'+(v||'Non assegnata')+'</option>';
+  }).join('');
+  return '<div class="ts-popup">'
+    +'<div class="ts-popup-title">'+d.cliente+'</div>'
     +'<span class="ts-popup-badge" style="background:'+col+'22;color:'+col+';">'+(STATO_LABEL[d.stato]||d.stato)+'</span>'
     +'<div class="ts-popup-row"><span>Tipo</span><span>'+d.tipo+'</span></div>'
     +'<div class="ts-popup-row"><span>Citt&#224; / Zona</span><span>'+d.citta+' &#183; Z'+d.zona+'</span></div>'
@@ -178,9 +193,11 @@ function buildPopup(d){
     +'<div class="ts-popup-row"><span>Scadenza</span><span>'+d.data_scad+'</span></div>'
     +'<div class="ts-popup-row"><span>Pianificato</span><span>'+(d.data_pian||'&#8212;')+'</span></div>'
     +(d.note?'<div class="ts-popup-note">'+d.note+'</div>':'')
-    +'<div class="ts-popup-prio"><label>Priorit&#224;:</label><select onchange="setPriorita(''+d.attivita+'',this.value)">'+opts+'</select></div>'
+    +'<div class="ts-popup-prio"><label>Priorit&#224;:</label>'
+    +'<select class="prio-select" data-att="'+d.attivita+'">'+opts+'</select></div>'
     +'</div>';
 }
+
 function setPriorita(attivita,val){
   if(val){prioritaMap[attivita]=val;}else{delete prioritaMap[attivita];}
   savePriorita(prioritaMap);
@@ -192,7 +209,9 @@ function setPriorita(attivita,val){
   var dot=document.querySelector('.pr-dot[data-att="'+attivita+'"]');
   if(dot){dot.style.background=val?PR_COLOR[val]:'transparent';dot.style.border='2px solid '+(val?PR_COLOR[val]:'#555');}
 }
+
 function getPr(d){return prioritaMap[d.attivita]||'';}
+
 function filtered(){
   return DB.filter(function(d){
     if(activeFilters.stato.size>0&&!activeFilters.stato.has(d.stato))return false;
@@ -202,6 +221,7 @@ function filtered(){
     return true;
   });
 }
+
 function render(){
   Object.keys(markerMap).forEach(function(k){map.removeLayer(markerMap[k]);});
   markerMap={};
@@ -239,9 +259,10 @@ function render(){
   document.getElementById('kpi-pianificate').textContent=DB.filter(function(d){return d.stato==='PIANIFICATA';}).length;
   document.getElementById('kpi-totale').textContent=DB.length;
 }
+
 document.querySelectorAll('.fbtn').forEach(function(btn){
   btn.addEventListener('click',function(){
-    var grp=this.dataset.group;var val=this.dataset.val;
+    var grp=this.dataset.group; var val=this.dataset.val;
     var set=activeFilters[grp];
     var tuttiBtn=document.querySelector('.fbtn.tutti-btn[data-group="'+grp+'"]');
     if(val==='ALL'){set.clear();document.querySelectorAll('.fbtn[data-group="'+grp+'"]').forEach(function(b){b.classList.remove('active');});tuttiBtn.classList.add('active');}
@@ -249,6 +270,7 @@ document.querySelectorAll('.fbtn').forEach(function(btn){
     render();
   });
 });
+
 render();
 </script>
 </body>
